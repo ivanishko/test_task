@@ -45,34 +45,35 @@ class Messages extends Client{
 	}
 
 	public function action_add(){
-		$this->redirectIfNotAuth();
+		
 
 		if(count($_POST) > 0){
-			$name = trim($_POST['name']);
+			$user = trim($_POST['user']);
+			$email = trim($_POST['email']);
 			$text = trim($_POST['text']);
 
-			$id = $this->model->add($name, $text);
+			$id = $this->model->add($user, $email, $text);
 
 			if($id === false){
-				$msg = $mMessages->lastError();
+				//$msg = $mMessages->lastError();
 			}
 			else{
-				header('Location: ' . ROOT . 'messages/one/' . $id);
+				header('Location: ' . ROOT . 'messages');
 				exit();
 			}
 		}
 		else{
-			$name = '';
+			$user = '';
+			$email = '';
 			$text = '';
-			$msg = '';
 		}
 
 		$this->title = 'Добавление статьи';
 
 		$this->content = $this->template('v_add', [
-			'name' => $name,
+			'user' => $user,
 			'text' => $text,
-			'msg' => $msg
+			'email' => $email
 		]);
 	}
 

@@ -6,10 +6,10 @@
 		if(file_exists($path)){
 			include_once($path);
 		}
-		else{
+		/*else{
 			// throw new Exception
 			echo $className . '<br>';
 			echo $path . '<br>';
 			exit('class not found');
-		}
+		}*/
 	});

@@ -1,7 +1,7 @@
 <h2>Список задач</h2>
 <hr>
 
-<a href="add">Написать</a>
+<a href="messages/add">Написать</a>
 <table class="table table-striped">
 	<thead class="thead-dark">
     <tr>

@@ -7,46 +7,61 @@ class Messages{
 	protected $lastError;
 
 	public function __construct(){
-		$this->sql = new Sql();
+		$this->sql = Sql::instance();
 		$this->lastError = '';
 	}
 
 	public function all(){
-		$query = $this->sql->query("SELECT * FROM tasks ORDER BY date_create DESC");
-		return $query->fetchAll();
+
+		return $this->sql->select("SELECT * FROM tasks ORDER BY task_id DESC");
 	}
 
-	public function one($id_task){
-		$query = $this->sql->query("SELECT * FROM tasks WHERE id_task=:id_task", ['id' => $id_task]);
+	public function one($id){
+	   /* $this->sql->update('messages',
+                ['name' => '1',
+                'text' => '2'],
+            'id_message=:id', ['id' => $id]);*/
+
+		$query = $this->sql->query("SELECT * FROM tasks WHERE id_task=:id", ['id' => $id]);
 		return $query->fetch();
 	}
 
-	public function add($email, $user, $text){
-		if(!$this->validation($email, $user, $text)){
+	public function edit($id){
+		
+	}
+
+
+	public function add($user, $email, $text){
+		if(!$this->validation($user, $email, $text)){
 			return false;
 		}
 
-		$query = $this->sql->query("INSERT INTO tasks (email, user, text) VALUES (:e, :u, :t)", [
-				'e' => $email,
-				'u' => $user,
-				't' => $text,
+		return $this->sql->insert('tasks', [
+			'user' => $user,
+			'email' => $email,
+			'text' => $text
+		]);
+	}
 
+	public function delete($id){
+		 $this->sql->delete('messages', 'id_message = :id', [
+				'id' => $id,
 			]);
 
-		return $this->sql->lastInsertId();
+		return true;/*$query->rowCount() > 0;*/
 	}
 
 	public function lastError(){
 		return $this->lastError;
 	}
 
-	protected function validation($email, $user, $text){
+	protected function validation($name, $text){
 		$error = true;
 
-		if($email == '' || $user == '' || $text == ''){
+		if($name == '' || $text == ''){
 			$this->lastError = 'заполните все поля';
 		}
-		elseif(mb_strlen($user, 'UTF8') > 32){
+		elseif(mb_strlen($name, 'UTF8') > 32){
 			$this->lastError = 'имя не больше 32 символов';
 		}
 		elseif(mb_strlen($text, 'UTF8') > 140){
