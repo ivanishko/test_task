@@ -9,14 +9,14 @@ class Messages extends Client{
 
 	public function action_index(){
 		$mMessages = new Model();
-		$messages = $mMessages->all();
+		$tasks = $mMessages->all();
 
 		$templateName = (($_GET['view'] ?? '') == 'table') ? 'v_table' : 'v_index';
 
 		$this->title = 'Главная';
 
 		$this->content = Template::render($templateName, [
-			'messages' => $messages
+			'tasks' => $tasks
 		]);
 	}
 

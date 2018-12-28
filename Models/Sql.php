@@ -6,7 +6,7 @@ class Sql {
 	protected $db;
 	
 	public function __construct(){	
-		$this->db = new PDO('mysql:host=localhost;dbname=php1course', 'root', '');
+		$this->db = new PDO('mysql:host=localhost;dbname=beejeetest', 'root', '');
 		$this->db->exec('SET NAMES UTF8');
  	
 		
