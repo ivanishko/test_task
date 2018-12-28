@@ -2,8 +2,6 @@
 
 namespace Controllers;
 
-use Models\Template;
-
 class Admin extends Base{
 	protected $title;
 	protected $content;
@@ -20,7 +18,7 @@ class Admin extends Base{
 	}
 
 	public function render(){
-		return Template::render('admin/v_main', [
+		return $this->template('admin/v_main', [
 			'title' => $this->title,
 			'content' => $this->content
 		]);

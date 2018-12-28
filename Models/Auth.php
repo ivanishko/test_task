@@ -18,7 +18,7 @@ class Auth{
 	}
 
 	public static function login($login, $password, $remember){
-		if($login == 'admin' && $password == '12345') {
+		if($login == 'admin' && $password == '123') {
 			$_SESSION['auth'] = true;
 
 			if($remember) {

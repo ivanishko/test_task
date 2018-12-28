@@ -1,11 +1,23 @@
-<h2>Список товаров</h2>
+<h2>Список задач</h2>
 <hr>
-<a href="<?=ROOT?>messages/?view=table">В виде таблицы</a>
-<hr>
+
 <a href="add">Написать</a>
-<table class="table">
-	<? foreach($tasks as $tsk): ?>
+<table class="table table-striped">
+	<thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">User</th>
+      <th scope="col">Email</th>
+      <th scope="col">Task</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  	<tbody>
+	<? foreach($messages as $tsk): ?>
 		<tr class="item">
+			<th scope="row">
+				#
+			</th>
 			<td>
 				<?=$tsk['user']?>
 			</td>
@@ -16,8 +28,9 @@
 				<?=$tsk['text']?>
 			</td>
 			<td>
-				<a href="<?=ROOT?>tasks/one/<?=$msg['id_message']?>">Перейти</a>
+				<?= $tsk['status'] ? 'Выполнена' : 'Не выполнена'?>
 			</td>
 		</tr>
 	<? endforeach; ?>
+	<tbody>
 </table>

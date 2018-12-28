@@ -3,54 +3,61 @@
 namespace Controllers;
 
 use Models\Messages as Model;
-use Models\Template;
 
 class Messages extends Client{
+	protected $model;
+
+	public function __construct(){
+		parent::__construct();
+		$this->model = new Model();
+	}
 
 	public function action_index(){
-		$mMessages = new Model();
-		$tasks = $mMessages->all();
+		$messages = $this->model->all();
 
 		$templateName = (($_GET['view'] ?? '') == 'table') ? 'v_table' : 'v_index';
 
 		$this->title = 'Главная';
 
-		$this->content = Template::render($templateName, [
-			'tasks' => $tasks
+		$this->content = $this->template($templateName, [
+			'messages' => $messages
 		]);
 	}
 
-	public function action_one(){
+
+	public function action_one()
+	{
 		$id = $this->params[2] ?? '';
 
-		$mMessages = new Model();
-		$message = $mMessages->one($id);
+		$message = $this->model->one($id);
 
 		if($message === false){
-			$this->title = 'Страница не найдена';
-			$this->content = Template::render('v_404');
+			$this->page404();
+			return;
 		}
-		else{
-			$this->title = 'Просмотр сообщения';
-			$this->content = Template::render('v_message', [
-				'message' => $message
-			]);
-		}
+	
+		/* ... много кода */
+
+		$this->title = 'Просмотр сообщения';
+		$this->content = $this->template('v_message', [
+			'message' => $message
+		]);
 	}
 
 	public function action_add(){
+		$this->redirectIfNotAuth();
+
 		if(count($_POST) > 0){
 			$name = trim($_POST['name']);
 			$text = trim($_POST['text']);
 
-			$mMessages = new Model();
-			$id = $mMessages->add($name, $text);
+			$id = $this->model->add($name, $text);
 
 			if($id === false){
 				$msg = $mMessages->lastError();
 			}
 			else{
-				header('Location: ' . ROOT . 'message/' . $id);
+				header('Location: ' . ROOT . 'messages/one/' . $id);
 				exit();
 			}
 		}
@@ -62,11 +69,28 @@ class Messages extends Client{
 
 		$this->title = 'Добавление статьи';
 
-		$this->content = Template::render('v_add', [
+		$this->content = $this->template('v_add', [
 			'name' => $name,
 			'text' => $text,
 			'msg' => $msg
 		]);
 	}
 
+	public function action_delete(){
+		$this->redirectIfNotAuth();
+
+		$id = (int)$this->params[2];
+
+		if($id == 0){
+			exit('....');
+		}
+
+		if($this->model->delete($id)){
+			header('Location: ' . ROOT);
+			exit();
+		}
+		else{
+			$this->page404();
+		}
+	}
 }
