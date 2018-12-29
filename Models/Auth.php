@@ -8,7 +8,7 @@ class Auth{
 	
 		if(!$auth) {
 			if(isset($_COOKIE['login']) && isset($_COOKIE['password']) &&
-				$_COOKIE['login'] == self::myHash('admin') && $_COOKIE['password'] == self::myHash('12345')) {
+				$_COOKIE['login'] == self::myHash('admin') && $_COOKIE['password'] == self::myHash('123')) {
 
 				$_SESSION['auth'] = true;
 				$auth = true;

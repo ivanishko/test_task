@@ -44,6 +44,33 @@ class Messages extends Client{
 		]);
 	}
 
+
+
+	public function action_edit()
+	{
+		$id = $this->params[2] ?? '';
+
+	
+
+		$message = $this->model->one($id);
+
+
+		if($message === false){
+			$this->page404();
+			return;
+		}
+	
+		/* ... много кода */
+
+		$this->title = 'Редактирование сообщения';
+		$this->content = $this->template('v_edit', [
+			'message' => $message
+		]);
+	}
+
+
+
+
 	public function action_add(){
 		
 
@@ -55,7 +82,8 @@ class Messages extends Client{
 			$id = $this->model->add($user, $email, $text);
 
 			if($id === false){
-				//$msg = $mMessages->lastError();
+				$msg = $this->lastError();
+				//$errors = $this->model->errors();
 			}
 			else{
 				header('Location: ' . ROOT . 'messages');
@@ -78,7 +106,7 @@ class Messages extends Client{
 	}
 
 	public function action_delete(){
-		$this->redirectIfNotAuth();
+		
 
 		$id = (int)$this->params[2];
 

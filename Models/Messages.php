@@ -22,7 +22,7 @@ class Messages{
                 'text' => '2'],
             'id_message=:id', ['id' => $id]);*/
 
-		$query = $this->sql->query("SELECT * FROM tasks WHERE id_task=:id", ['id' => $id]);
+		$query = $this->sql->query("SELECT * FROM tasks WHERE task_id=:id", ['id' => $id]);
 		return $query->fetch();
 	}
 
@@ -44,7 +44,7 @@ class Messages{
 	}
 
 	public function delete($id){
-		 $this->sql->delete('messages', 'id_message = :id', [
+		 $this->sql->delete('tasks', 'task_id = :id', [
 				'id' => $id,
 			]);
 
@@ -55,13 +55,13 @@ class Messages{
 		return $this->lastError;
 	}
 
-	protected function validation($name, $text){
+	protected function validation($user, $email, $text){
 		$error = true;
 
-		if($name == '' || $text == ''){
+		if($user == '' || $email == '' || $text == ''){
 			$this->lastError = 'заполните все поля';
 		}
-		elseif(mb_strlen($name, 'UTF8') > 32){
+		elseif(mb_strlen($user, 'UTF8') > 32){
 			$this->lastError = 'имя не больше 32 символов';
 		}
 		elseif(mb_strlen($text, 'UTF8') > 140){
