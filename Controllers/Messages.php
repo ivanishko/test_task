@@ -47,20 +47,38 @@ class Messages extends Client{
 
 
 	public function action_edit()
-	{
-		$id = $this->params[2] ?? '';
 
-	
+	{	
+		$this->redirectIfNotAuth();
+		$id = $this->params[2] ?? '';
 
 		$message = $this->model->one($id);
 
 
-		if($message === false){
-			$this->page404();
-			return;
+		if(count($_POST) > 0){
+
+			if (isset($_POST['status']) ){
+				$data['status'] = ($_POST['status'] == 'on') ? 1 : null;
+			}
+			
+			$data['text'] = trim($_POST['text']);
+
+
+
+			$query = $this->model->edit($id, $data);
+
+			if($query === false){
+				$msg = $this->lastError();
+				//$errors = $this->model->errors();
+			}
+			else{
+				header('Location: ' . ROOT . 'messages');
+				exit();
+			}
 		}
+
+		else{
 	
-		/* ... много кода */
 
 		$this->title = 'Редактирование сообщения';
 		$this->content = $this->template('v_edit', [
@@ -68,7 +86,7 @@ class Messages extends Client{
 		]);
 	}
 
-
+}
 
 
 	public function action_add(){

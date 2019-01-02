@@ -93,15 +93,18 @@ class Sql{
 	*/
 	public function update($table, $data, $where, $whereParams = []){
         $pairs = [];
+
         foreach ($data as $key =>$value) {
             $pairs[] = "$key=:$key";
 	    }
+
 	    $pairStr = implode(',', $pairs);
-	    $sql = "UPDATE $table SET text=:t, name=:n WHERE id_message = :id";
+
+	    $sql = "UPDATE $table SET $pairStr WHERE task_id = :id";
 	    echo $sql;
 
 	    $params = array_merge($data, $whereParams);
-	    $query = $this->query($sql, $data);
+	    $query = $this->query($sql, $params);
 	    return $query->rowCount();
 	}
 

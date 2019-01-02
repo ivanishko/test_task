@@ -17,17 +17,16 @@ class Messages{
 	}
 
 	public function one($id){
-	   /* $this->sql->update('messages',
-                ['name' => '1',
-                'text' => '2'],
-            'id_message=:id', ['id' => $id]);*/
-
+	
 		$query = $this->sql->query("SELECT * FROM tasks WHERE task_id=:id", ['id' => $id]);
+
 		return $query->fetch();
 	}
 
-	public function edit($id){
-		
+
+
+	public function edit($id, $data){
+		return $this->sql->update('tasks', 	$data,'task_id:=:id', ['id' => $id]);
 	}
 
 
