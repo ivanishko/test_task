@@ -13,15 +13,36 @@ class Messages extends Client{
 	}
 
 	public function action_index(){
-		$messages = $this->model->all();
+		$page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;	
+		$on_page = 3;
+		$shift = ($page - 1) * $on_page;
+
+		$res = $this->model->selectCount();
+		$count = (int)$res['all_articles'];
+		$pages = ceil($count / $on_page);
+
+		
+		var_dump($count);	
+		
+		//var_dump($pages);
+		//var_dump($pages);
+
+		$messages = $this->model->all( $on_page,$shift);
 
 		$templateName = (($_GET['view'] ?? '') == 'table') ? 'v_table' : 'v_index';
 
 		$this->title = 'Главная';
 
+
 		$this->content = $this->template($templateName, [
-			'messages' => $messages
+			'messages' => $messages,
+			'count' => $count,
+			'page' => $page, 
+			'pages' => $pages
+			
 		]);
+
+		
 	}
 
 
@@ -57,9 +78,7 @@ class Messages extends Client{
 
 		if(count($_POST) > 0){
 
-			if (isset($_POST['status']) ){
-				$data['status'] = ($_POST['status'] == 'on') ? 1 : null;
-			}
+			$data['status'] = ( isset($_POST['status']) && $_POST['status'] == 'on' ) ? 1 : null;
 			
 			$data['text'] = trim($_POST['text']);
 

@@ -14,7 +14,10 @@
 		<textarea name="text"><?=$message['text']?></textarea>
 	</div>
 	<div>
-		<input type="checkbox" name="status">Выполнена
+		<input type="checkbox" name="status"<?php if ($message['status'] =='1'): ?>
+			checked
+		<?endif;?>>
+		Выполнена
 	</div>
 	<button>Отправить</button>
 </form>

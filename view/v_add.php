@@ -15,4 +15,4 @@
 	</div>
 	<button>Отправить</button>
 </form>
-<?=$msg?>
+ <?=$msg?> 

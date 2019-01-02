@@ -91,6 +91,8 @@ class Sql{
 			['id' => 20]
 		)
 	*/
+
+		
 	public function update($table, $data, $where, $whereParams = []){
         $pairs = [];
 
@@ -107,6 +109,9 @@ class Sql{
 	    $query = $this->query($sql, $params);
 	    return $query->rowCount();
 	}
+
+
+
 
 	public function query($sql, $params = []){
 		$query = $this->db->prepare($sql);

@@ -40,3 +40,18 @@
 	<? endforeach; ?>
 	<tbody>
 </table>
+<?php 
+		
+		for ($i = 1; $i <= $pages; $i++) {
+	    // если текущая старница
+		    if($i == $page){
+		        echo " [$i] ";
+		    } else {
+		        echo "<a href='messages?page=$i'>$i</a> ";
+		    }
+		}
+?>
+
+
+
+		

@@ -10,11 +10,11 @@
 			<th>Текст</th>
 		</thead>
 		<tbody>
-			<? foreach($messages as $msg): ?>
+			<? foreach($messages as $tsk): ?>
 				<tr>
-					<td><?=$msg['dt']?></td>
-					<td><?=$msg['name']?></td>
-					<td><?=$msg['text']?></td>
+					<td><?=$tsk['dt']?></td>
+					<td><?=$tsk['name']?></td>
+					<td><?=$tsk['text']?></td>
 				</tr>
 			<? endforeach; ?>
 		</tbody>
