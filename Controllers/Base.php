@@ -2,7 +2,7 @@
 
 namespace Controllers;
 
-use Models\Template;
+use Templates\Template;
 
 abstract class Base{
 	protected $params;
