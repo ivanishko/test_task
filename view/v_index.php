@@ -20,7 +20,7 @@
 	<? foreach($tasks as $task): ?>
 		<tr class="item">
 			<td scope="row">
-				# 
+				<a href="<?=ROOT?>tasks/one/<?=$task['task_id']?>">#</a> 
 			</td>
 			<td>
 				<?=$task['user']?>

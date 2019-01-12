@@ -4,4 +4,4 @@
 <hr>
 <div><?=$task['text']?></div>
 <hr>
-<a href="<?=ROOT?>messages">На главную</a>
+<a href="<?=ROOT?>tasks">На главную</a>
