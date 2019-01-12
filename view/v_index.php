@@ -17,7 +17,7 @@
     </tr>
   </thead>
   	<tbody>
-	<? foreach($messages as $task): ?>
+	<? foreach($tasks as $task): ?>
 		<tr class="item">
 			<td scope="row">
 				# 

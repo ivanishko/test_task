@@ -1,4 +1,4 @@
-<a href="<?=ROOT?>messages">На главную</a>
+<a href="<?=ROOT?>tasks">На главную</a>
 <hr>
 <form method="post">
 	<div>

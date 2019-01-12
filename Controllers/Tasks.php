@@ -27,7 +27,7 @@ class Tasks extends Client{
 		//var_dump($pages);
 		//var_dump($pages);
 
-		$messages = $this->model->all( $on_page,$shift);
+		$tasks = $this->model->all( $on_page,$shift);
 
 		$templateName = (($_GET['view'] ?? '') == 'table') ? 'v_table' : 'v_index';
 
@@ -35,7 +35,7 @@ class Tasks extends Client{
 
 
 		$this->content = $this->template($templateName, [
-			'messages' => $messages,
+			'tasks' => $tasks,
 			'count' => $count,
 			'page' => $page, 
 			'pages' => $pages
@@ -50,7 +50,7 @@ class Tasks extends Client{
 	{
 		$id = $this->params[2] ?? '';
 
-		$message = $this->model->one($id);
+		$task = $this->model->one($id);
 
 		if($message === false){
 			$this->page404();
@@ -73,7 +73,7 @@ class Tasks extends Client{
 		$this->redirectIfNotAuth();
 		$id = $this->params[2] ?? '';
 
-		$message = $this->model->one($id);
+		$task = $this->model->one($id);
 
 
 		if(count($_POST) > 0){
@@ -101,7 +101,7 @@ class Tasks extends Client{
 
 		$this->title = 'Редактирование сообщения';
 		$this->content = $this->template('v_edit', [
-			'message' => $message
+			'task' => $task
 		]);
 	}
 

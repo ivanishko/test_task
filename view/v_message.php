@@ -1,7 +1,7 @@
-<h2><?=$message['user']?></h2>
+<h2><?=$task['user']?></h2>
 <hr>
-<div><?=$message['email']?></div>
+<div><?=$task['email']?></div>
 <hr>
-<div><?=$message['text']?></div>
+<div><?=$task['text']?></div>
 <hr>
 <a href="<?=ROOT?>messages">На главную</a>
