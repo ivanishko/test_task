@@ -22,7 +22,7 @@ class Messages extends Client{
 		$pages = ceil($count / $on_page);
 
 		
-		var_dump($count);	
+		//var_dump($count);	
 		
 		//var_dump($pages);
 		//var_dump($pages);

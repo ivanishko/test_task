@@ -2,34 +2,37 @@
 <hr>
 
 <a href="messages/add">Написать</a>
-<table class="table table-striped">
-	<thead class="thead-dark">
+<table 
+  data-toggle="table"
+  data-height="360"
+ class="table table-striped">
+	<thead class="thead-light">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">User</th>
-      <th scope="col">Email</th>
+      <th scope="col" data-sortable="true">User</th>
+      <th scope="col" data-sortable="true">Email</th>
       <th scope="col">Task</th>
-      <th scope="col">Status</th>
+      <th scope="col" data-sortable="true">Status</th>
       <th scope="col">Edit</th>
     </tr>
   </thead>
   	<tbody>
-	<? foreach($messages as $tsk): ?>
+	<? foreach($messages as $task): ?>
 		<tr class="item">
-			<th scope="row">
-				#
-			</th>
-			<td>
-				<?=$tsk['user']?>
+			<td scope="row">
+				# 
 			</td>
 			<td>
-				<?=$tsk['email']?>
+				<?=$task['user']?>
 			</td>
 			<td>
-				<?=$tsk['text']?>
+				<?=$task['email']?>
 			</td>
 			<td>
-				<?= $tsk['status'] ? 'Выполнена' : 'Не выполнена'?>
+				<?=$task['text']?>
+			</td>
+			<td>
+				<?= $task['status'] ? 'Выполнена' : 'Не выполнена'?>
 			</td>
 			<td>
 				<?  if($_SESSION['auth']):  ?>	
