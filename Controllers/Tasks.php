@@ -52,7 +52,7 @@ class Tasks extends Client{
 
 		$task = $this->model->one($id);
 
-		if($message === false){
+		if($task === false){
 			$this->page404();
 			return;
 		}
@@ -61,7 +61,7 @@ class Tasks extends Client{
 
 		$this->title = 'Просмотр сообщения';
 		$this->content = $this->template('v_task', [
-			'message' => $message
+			'task' => $task
 		]);
 	}
 
