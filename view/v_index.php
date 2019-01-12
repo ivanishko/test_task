@@ -1,7 +1,7 @@
 <h2>Список задач</h2>
 <hr>
 
-<a href="messages/add">Написать</a>
+<a href="tasks/add">Написать</a>
 <table 
   data-toggle="table"
   data-height="360"
@@ -36,7 +36,7 @@
 			</td>
 			<td>
 				<?  if($_SESSION['auth']):  ?>	
-            		<a href="<?=ROOT?>messages/edit/<?=$tsk['task_id']?>">Править</a> | <a href="<?=ROOT?>messages/delete/<?=$tsk['task_id']?>">Удалить</a> 
+            		<a href="<?=ROOT?>tasks/edit/<?=$task['task_id']?>">Править</a> | <a href="<?=ROOT?>tasks/delete/<?=$task['task_id']?>">Удалить</a> 
                 <? endif;?>
 			</td>
 		</tr>
@@ -50,7 +50,7 @@
 		    if($i == $page){
 		        echo " [$i] ";
 		    } else {
-		        echo "<a href='messages?page=$i'>$i</a> ";
+		        echo "<a href='tasks?page=$i'>$i</a> ";
 		    }
 		}
 ?>

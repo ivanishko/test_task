@@ -14,7 +14,7 @@
 		}
 	}
 
-	$controller = ucfirst($params[0] ?? 'messages');
+	$controller = ucfirst($params[0] ?? 'tasks');
 
 	$action = 'action_' . ($params[1] ?? 'index');
 

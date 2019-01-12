@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class Messages{
+class Tasks{
 	protected $sql;
 	protected $lastError;
 

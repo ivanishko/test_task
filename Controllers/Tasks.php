@@ -2,9 +2,9 @@
 
 namespace Controllers;
 
-use Models\Messages as Model;
+use Models\Tasks as Model;
 
-class Messages extends Client{
+class Tasks extends Client{
 	protected $model;
 
 	public function __construct(){
@@ -60,7 +60,7 @@ class Messages extends Client{
 		/* ... много кода */
 
 		$this->title = 'Просмотр сообщения';
-		$this->content = $this->template('v_message', [
+		$this->content = $this->template('v_task', [
 			'message' => $message
 		]);
 	}
@@ -91,7 +91,7 @@ class Messages extends Client{
 				//$errors = $this->model->errors();
 			}
 			else{
-				header('Location: ' . ROOT . 'messages');
+				header('Location: ' . ROOT . 'tasks');
 				exit();
 			}
 		}
@@ -123,7 +123,7 @@ class Messages extends Client{
 				//$errors = $this->model->errors();
 			}
 			else{
-				header('Location: ' . ROOT . 'messages');
+				header('Location: ' . ROOT . 'tasks');
 				exit();
 			}
 		}
