@@ -40,18 +40,12 @@
 	<? endforeach; ?>
 	<tbody>
 </table>
-<?php 
-		
-		for ($i = 1; $i <= $pages; $i++) {
-	    // если текущая старница
-		    if($i == $page){
+<? for ($i = 1; $i <= $pages; $i++) {	    
+		    if($i == $page):
 		        echo " [$i] ";
-		    } else {
+		     else :
 		        echo "<a href='tasks?page=$i'>$i</a> ";
-		    }
+		
+		    endif;
 		}
 ?>
-
-
-
-		

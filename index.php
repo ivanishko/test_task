@@ -20,7 +20,6 @@
 
 	
 	
-	
 	$cname = "Controllers\\$controller";
 
 	if(!class_exists($cname)){
