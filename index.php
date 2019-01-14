@@ -18,7 +18,7 @@
 
 	$action = 'action_' . ($params[1] ?? 'index');
 
-	
+	$id = $params[2] ?? '';
 	
 	$cname = "Controllers\\$controller";
 
@@ -30,6 +30,6 @@
 
 	$c = new $cname();
 	$c->load($params);
-	$c->$action();
+	$c->$action($id);
 	$html = $c->render();
 	echo $html;

@@ -46,11 +46,11 @@ class Tasks extends Client{
 	}
 
 
-	public function action_one()
+	public function action_one($id)
 	{
 		//$id = $this->params[2] ?? '';
 
-		$id = $_GET['id'];
+		
 
 		$task = $this->model->one($id);
 
@@ -69,13 +69,13 @@ class Tasks extends Client{
 
 
 
-	public function action_edit()
+	public function action_edit($id)
 
 	{	
 		$this->redirectIfNotAuth();
 		//$id = $this->params[2] ?? '';
 
-		$id = $_GET['id'];
+		//$id = $_GET['id'];
 
 		$task = $this->model->one($id);
 
@@ -146,11 +146,11 @@ class Tasks extends Client{
 		]);
 	}
 
-	public function action_delete(){
+	public function action_delete($id){
 		
 
 		//$id = (int)$this->params[2];
-		$id = $_GET['id'];
+		
 		if($id == 0){
 			exit('....');
 		}

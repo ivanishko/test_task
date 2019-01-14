@@ -17,7 +17,7 @@
 	<? foreach($tasks as $task): ?>
 		<tr class="item">
 			<td scope="row">
-				<a href="<?=ROOT?>tasks/one/?id=<?=$task['task_id']?>">#</a> 
+				<a href="<?=ROOT?>tasks/one/<?=$task['task_id']?>">#</a> 
 			</td>
 			<td>
 				<?=$task['user']?>
@@ -33,7 +33,7 @@
 			</td>
 			<td>
 				<?  if($_SESSION['auth']):  ?>	
-            		<a href="<?=ROOT?>tasks/edit/?id=<?=$task['task_id']?>">Править</a> | <a href="<?=ROOT?>tasks/delete/?id=<?=$task['task_id']?>">Удалить</a> 
+            		<a href="<?=ROOT?>tasks/edit/<?=$task['task_id']?>">Править</a> | <a href="<?=ROOT?>tasks/delete/<?=$task['task_id']?>">Удалить</a> 
                 <? endif;?>
 			</td>
 		</tr>
@@ -45,7 +45,6 @@
 		        echo " [$i] ";
 		     else :
 		        echo "<a href='tasks?page=$i'>$i</a> ";
-		
 		    endif;
 		}
 ?>
