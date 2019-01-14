@@ -2,17 +2,14 @@
 <hr>
 
 <a href="tasks/add">Написать</a>
-<table 
-  data-toggle="table"
-  data-height="360"
- class="table table-striped">
+<table id="myTable" class="tablesorter  table table-striped ">
 	<thead class="thead-light">
     <tr>
       <th scope="col">#</th>
-      <th scope="col" data-sortable="true">User</th>
-      <th scope="col" data-sortable="true">Email</th>
+      <th scope="col">User</th>
+      <th scope="col">Email</th>
       <th scope="col">Task</th>
-      <th scope="col" data-sortable="true">Status</th>
+      <th scope="col">Status</th>
       <th scope="col">Edit</th>
     </tr>
   </thead>
@@ -20,7 +17,7 @@
 	<? foreach($tasks as $task): ?>
 		<tr class="item">
 			<td scope="row">
-				<a href="<?=ROOT?>tasks/one/<?=$task['task_id']?>">#</a> 
+				<a href="<?=ROOT?>tasks/one/?id=<?=$task['task_id']?>">#</a> 
 			</td>
 			<td>
 				<?=$task['user']?>
@@ -36,7 +33,7 @@
 			</td>
 			<td>
 				<?  if($_SESSION['auth']):  ?>	
-            		<a href="<?=ROOT?>tasks/edit/<?=$task['task_id']?>">Править</a> | <a href="<?=ROOT?>tasks/delete/<?=$task['task_id']?>">Удалить</a> 
+            		<a href="<?=ROOT?>tasks/edit/?id=<?=$task['task_id']?>">Править</a> | <a href="<?=ROOT?>tasks/delete/?id=<?=$task['task_id']?>">Удалить</a> 
                 <? endif;?>
 			</td>
 		</tr>

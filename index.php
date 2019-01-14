@@ -18,6 +18,9 @@
 
 	$action = 'action_' . ($params[1] ?? 'index');
 
+	
+	
+	
 	$cname = "Controllers\\$controller";
 
 	if(!class_exists($cname)){
