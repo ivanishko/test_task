@@ -38,8 +38,8 @@ class Tasks extends Client{
 			'tasks' => $tasks,
 			'count' => $count,
 			'page' => $page, 
-			'pages' => $pages
-			
+			'pages' => $pages,
+
 		]);
 
 		
@@ -120,11 +120,12 @@ class Tasks extends Client{
 			$email = trim($_POST['email']);
 			$text = trim($_POST['text']);
 
+
 			$id = $this->model->add($user, $email, $text);
 
 			if($id === false){
-				$msg = $this->lastError();
-				//$errors = $this->model->errors();
+				$msg = $this->model->lastError();
+				
 			}
 			else{
 				header('Location: ' . ROOT . 'tasks');
@@ -135,6 +136,7 @@ class Tasks extends Client{
 			$user = '';
 			$email = '';
 			$text = '';
+			$msg = '';
 		}
 
 		$this->title = 'Добавление статьи';
@@ -142,7 +144,8 @@ class Tasks extends Client{
 		$this->content = $this->template('v_add', [
 			'user' => $user,
 			'text' => $text,
-			'email' => $email
+			'email' => $email,
+			'msg' => $msg
 		]);
 	}
 

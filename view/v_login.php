@@ -18,5 +18,4 @@
 
 
 
-<?php echo $msg;
- ?>
+<?=$msg?>
