@@ -21,11 +21,6 @@ class Tasks extends Client{
 		$count = (int)$res['all_articles'];
 		$pages = ceil($count / $on_page);
 
-		
-		//var_dump($count);	
-		
-		//var_dump($pages);
-		//var_dump($pages);
 
 		$tasks = $this->model->all( $on_page,$shift);
 
@@ -59,7 +54,6 @@ class Tasks extends Client{
 			return;
 		}
 	
-		/* ... много кода */
 
 		$this->title = 'Просмотр сообщения';
 		$this->content = $this->template('v_task', [
