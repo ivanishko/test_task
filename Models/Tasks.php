@@ -14,10 +14,6 @@ class Tasks{
 	public function selectCount() {
 		 
 		$query = $this->sql->query("SELECT count(*) AS all_articles FROM `tasks` ");
-		
-		//var_dump($res);
-		//$count = $res["all_articles"];
-		//var_dump($count);
 		return $query->fetch();
 	}
 
@@ -30,16 +26,11 @@ class Tasks{
 	public function one($id){
 	
 		$query = $this->sql->query("SELECT * FROM tasks WHERE task_id=:id", ['id' => $id]);
-
 		return $query->fetch();
 	}
-
-
-
 	public function edit($id, $data){
 		return $this->sql->update('tasks', 	$data, 'task_id:=:id', ['id' => $id]);
 	}
-
 
 	public function add($user, $email, $text){
 		if(!$this->validation($user, $email, $text)){

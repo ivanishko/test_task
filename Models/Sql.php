@@ -28,10 +28,6 @@ class Sql{
 	}
 
 
-	/*
-		INSERT INTO $table (....) VALUES (...)
-	*/
-
 	public function insert($table, $data){
 
 		$keys = [];
@@ -48,34 +44,9 @@ class Sql{
 
 		$sql = "INSERT INTO $table ($keyStr) VALUES ($valuesStr)";
 		$this->query($sql, $data);
-		
-
 		return $this->db->lastInsertId();
 
-
-
-/*
-		$keys = [];
-		$masks = [];
-
-		foreach($data as $key => $value){
-			$keys[] = $key;
-			$masks[] = ":$key";
-		}
-
-		$keyStr = implode(', ', $keys);
-		$valuesStr = implode(', ', $masks);
-
-	*/	
-		
-		 
 	}
-
-	/* 
-		delete('messages', 'id_message=:id', ['id' => 20])
-		delete('users', 'id_user=:id', ['id' => 25])
-		delete('sessions', 'active=:a OR dt_last < :dt', ['a' => '0', 'dt' => '2018-02-07'])
-	*/
 
 	public function delete($table, $where, $whereParams = [], $limit = 1){
         $sql = "DELETE FROM $table WHERE $where LIMIT $limit";
@@ -83,16 +54,6 @@ class Sql{
         return $query->rowCount();
 	}
 
-	/* 
-		update(
-			'messages',
-			['title' => '1', 'content' => '2'], 
-			'id_message=:id', 
-			['id' => 20]
-		)
-	*/
-
-		
 	public function update($table, $data, $where, $whereParams = []){
         $pairs = [];
 
@@ -109,9 +70,6 @@ class Sql{
 	    $query = $this->query($sql, $params);
 	    return $query->rowCount();
 	}
-
-
-
 
 	public function query($sql, $params = []){
 		$query = $this->db->prepare($sql);

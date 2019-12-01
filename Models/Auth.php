@@ -19,16 +19,14 @@ class Auth{
 
 	public static function login($login, $password, $remember){
 		if($login == 'admin' && $password == '123') {
-			$_SESSION['auth'] = true;
+            $_SESSION['auth'] = true;
 
-			if($remember) {
-				setcookie('login', self::myHash($login), time() + 3600 * 24 * 14, '/');
-				setcookie('password', self::myHash($password), time() + 3600 * 24 * 14, '/'); 
-			}
-
-			return true;
-		}
-
+            if ($remember) {
+                setcookie('login', self::myHash($login), time() + 3600 * 24 * 14, '/');
+                setcookie('password', self::myHash($password), time() + 3600 * 24 * 14, '/');
+            }
+            return true;
+        }
 		return false;
 	}
 

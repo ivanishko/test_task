@@ -67,9 +67,6 @@ class Tasks extends Client{
 
 	{	
 		$this->redirectIfNotAuth();
-		//$id = $this->params[2] ?? '';
-
-		//$id = $_GET['id'];
 
 		$task = $this->model->one($id);
 
@@ -86,7 +83,6 @@ class Tasks extends Client{
 
 			if($query === false){
 				$msg = $this->lastError();
-				//$errors = $this->model->errors();
 			}
 			else{
 				header('Location: ' . ROOT . 'tasks');
