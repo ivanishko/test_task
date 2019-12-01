@@ -1,3 +1,3 @@
 <?php
 
-	define('ROOT', '/');
+	define('ROOT', '/dashboard/beejee/');
